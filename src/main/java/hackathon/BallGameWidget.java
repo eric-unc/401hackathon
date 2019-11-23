@@ -1,6 +1,7 @@
 package src.main.java.hackathon;
 
 import java.util.*;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -12,6 +13,7 @@ import javax.swing.JPanel;
 public class BallGameWidget extends JPanel implements MouseMotionListener, MouseListener{
 	///
 	List<JBall> ballList;
+	List<JBullet> bulletList;
 	JLine line = null;
 	
 	private final int DEFAULT_WIDTH = 800;
@@ -26,14 +28,14 @@ public class BallGameWidget extends JPanel implements MouseMotionListener, Mouse
 		this.setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 
 		ballList = new ArrayList<JBall>();
-		ballList.add(new JBall(100, 599, 20, -60));
+		ballList.add(new JBall(100, 599, 20, -60, 20, Color.RED));
 		ballList.add(new JBall(50, 599, 30, -50));
 
+		bulletList = new ArrayList<JBullet>();
 		for(JBall j : ballList)
 			add(j);
-		}
-		//add(line);
 		addMouseMotionListener(this);
+		addMouseListener(this);
 	}
 
 	@Override
@@ -52,7 +54,12 @@ public class BallGameWidget extends JPanel implements MouseMotionListener, Mouse
 			if(ball.getY() - ball.getRadius() < 0)
 				ball.setVelocityY(ball.getVelocityY() * -1);
 		}
-		
+		if (bulletList.size()>0) {
+			for(JBall bullet : bulletList){
+				bullet.setVelocityY(bullet.getVelocityY() + 2);
+				bullet.move(this.getGraphics());
+			}
+		}
 		if (line != null)
 			line.paintComponent(this.getGraphics());
 	
@@ -69,13 +76,13 @@ public class BallGameWidget extends JPanel implements MouseMotionListener, Mouse
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		arrowInitX = e.getX();
-		arrowInitX = e.getY();
+		arrowInitY = e.getY();
 	}
 	
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		//SHOOT BALL HERE
+		bulletList.add(new JBullet (arrowInitX, arrowInitY, arrowInitX-e.getX(), arrowInitY-e.getY()));
 	}
 	
 	

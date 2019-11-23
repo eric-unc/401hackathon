@@ -1,5 +1,6 @@
 package src.main.java.hackathon;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
@@ -11,6 +12,7 @@ public class JBall extends JPanel {
 	private int velocityX;
 	private int velocityY;
 	private int radius;
+	private Color color;
 
 	public JBall(int x, int y, int velocityX, int velocityY){
 		this.x = x;
@@ -18,12 +20,21 @@ public class JBall extends JPanel {
 		this.velocityX = velocityX;
 		this.velocityY = velocityY;
 		radius = 20;
+		color = color.RED;
+	}
+	
+	public JBall(int x, int y, int velocityX, int velocityY, int radius, Color color){
+		this.x = x;
+		this.y = y;
+		this.velocityX = velocityX;
+		this.velocityY = velocityY;
+		this.radius = radius;
+		this.color = color;
 	}
 
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-
 		g.fillOval(x - radius, y - radius, radius, radius);
 	}
 
