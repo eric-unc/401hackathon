@@ -9,15 +9,14 @@ public class Main {
 		frame.setTitle("Ball Game");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		BallGameWidget w = new BallGameWidget();
+		BallGameWidget widget = new BallGameWidget();
 		
-		frame.setContentPane(w);
+		frame.setContentPane(widget);
 		frame.setSize(800, 600);
-		//frame.pack();
 		frame.setVisible(true);
 		
 		while(true){
-			w.update();
+			widget.update();
 			Thread.sleep(100);
 		}
 	}
