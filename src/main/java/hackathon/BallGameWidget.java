@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class BallGameWidget extends JPanel {
-	
+	//
 	JBall[] ballArray = new JBall[2];
 	List<JBall> ballList;
 	private final int DEFAULT_WIDTH = 800;
