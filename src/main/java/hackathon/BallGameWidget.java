@@ -28,7 +28,7 @@ public class BallGameWidget extends JPanel implements MouseMotionListener, Mouse
 		this.setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 
 		ballList = new ArrayList<JBall>();
-		ballList.add(new JBall(100, 599, 20, -60, 20, Color.RED));
+		ballList.add(new JBall(100, 599, 1, 1));
 		ballList.add(new JBall(50, 599, 30, -50));
 
 		bulletList = new ArrayList<JBullet>();
@@ -62,7 +62,7 @@ public class BallGameWidget extends JPanel implements MouseMotionListener, Mouse
 		}
 		if (line != null)
 			line.paintComponent(this.getGraphics());
-	
+		collision();
 		
 	}
 
@@ -113,8 +113,8 @@ public class BallGameWidget extends JPanel implements MouseMotionListener, Mouse
 		
 	}
 	
-	public boolean isCollision() {
-		for (JBall ball : ballList) {
+	/*public void collision() {
+		for (JBall ball : new ArrayList(ballList.toArray()) {
 			int ballX = ball.getX();
 			int ballY = ball.getY();
 			
@@ -122,10 +122,39 @@ public class BallGameWidget extends JPanel implements MouseMotionListener, Mouse
 				int bulletX = bullet.getX();
 				int bulletY = bullet.getY();
 				
-				return (Math.sqrt(((bulletX - ballX) * (bulletX - ballX) + 
-					(bulletY - ballY) * (bulletY - ballY))) <= ball.getRadius() + bullet.getRadius())
+				if(Math.sqrt(((bulletX - ballX) * (bulletX - ballX) + 
+					(bulletY - ballY) * (bulletY - ballY))) <= ball.getRadius() + bullet.getRadius()) {
+					//ballList.remove(ball);
+					System.out.println("Exclusion");
+				}
+					
 					
 			}
+		}
+		
+	}*/
+	
+	public void collision() {
+		for (int i = 0; i < ballList.size(); i++) {
+			int ballX = ballList.get(i).getX();
+			int ballY = ballList.get(i).getY();
+			
+			for (int j = 0; j < bulletList.size(); j++) {
+				int bulletX = bulletList.get(j).getX();
+				int bulletY = bulletList.get(j).getY();
+				
+				if (Math.sqrt(((bulletX - ballX) * (bulletX - ballX)) + 
+					((bulletY - ballY) * (bulletY - ballY))) <= 
+						ballList.get(i).getRadius() + bulletList.get(j).getRadius()) {
+							ballList.remove(i);
+							System.out.println("Collision");
+							i--;
+				
+					
+						
+			}
+			
+		}
 		}
 	}
 }
