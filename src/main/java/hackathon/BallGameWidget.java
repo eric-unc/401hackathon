@@ -112,4 +112,20 @@ public class BallGameWidget extends JPanel implements MouseMotionListener, Mouse
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public boolean isCollision() {
+		for (JBall ball : ballList) {
+			int ballX = ball.getX();
+			int ballY = ball.getY();
+			
+			for (JBall bullet : bulletList) {
+				int bulletX = bullet.getX();
+				int bulletY = bullet.getY();
+				
+				return (Math.sqrt(((bulletX - ballX) * (bulletX - ballX) + 
+					(bulletY - ballY) * (bulletY - ballY))) <= ball.getRadius() + bullet.getRadius())
+					
+			}
+		}
+	}
 }
