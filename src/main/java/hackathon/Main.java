@@ -17,9 +17,8 @@ public class Main {
 		frame.setVisible(true);
 		
 		while(true){
-			System.out.println("Test");
-			w.j1.move(w.getGraphics());
-			Thread.sleep(2000);
+			w.update();
+			Thread.sleep(100);
 		}
 	}
 
