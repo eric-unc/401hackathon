@@ -12,7 +12,7 @@ public class BallGameWidget extends JPanel {
 	List<JBall> ballList;
 	private final int DEFAULT_WIDTH = 800;
 	private final int DEFAULT_HEIGHT = 400;
-	
+	//
 	public BallGameWidget(){
 		super();
 		this.setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
