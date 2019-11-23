@@ -1,33 +1,32 @@
 package src.main.java.hackathon;
-import javax.swing.*;
+
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.geom.*;
+import java.awt.geom.Line2D;
+
+import javax.swing.JPanel;
+
 @SuppressWarnings("serial")
-public class JLine extends JPanel  {
-	
-	Line2D verticalLine;
-	
-	private final Dimension prefPanelSize = new Dimension(800,600);
-	
-	public JLine() {
-		verticalLine = new Line2D.Float(20, 20,
-                40, 40);
+public class JLine extends JPanel {
+
+	private int originX;
+	private int originY;
+	private int tailX;
+	private int tailY;
+
+	public JLine(int originX, int originY, int tailX, int tailY){
+		super();
+		this.originX = originX;
+		this.originY = originY;
+		this.tailX = tailX;
+		this.tailY = tailY;
 	}
-	 public void paintComponent(Graphics g) {
-	        super.paintComponent(g);  // fixes the immediate problem.
-	        Graphics2D g2 = (Graphics2D) g;
 
-	        g2.draw(verticalLine);
-	 }
-	 /*
-	 public void actionPerformed(ActionEvent e) {
-	        int currWidth = getWidth();
-	        int currHeight = getHeight();
+	@Override
+	public void paintComponent(Graphics g){
+		super.paintComponent(g); // fixes the immediate problem.
+		Graphics2D g2 = (Graphics2D) g;
 
-	        //horizontalLine.setLine(0, 40, currWidth, 40);
-	        verticalLine.setLine(currWidth / 2, 0, currWidth / 2, currHeight);
-	    }
-	*/
+		g2.draw(new Line2D.Float(originX, originY, tailX, tailY));
+		g2.fillOval(originX - 5, originY - 5, 10, 10);
+	}
 }
