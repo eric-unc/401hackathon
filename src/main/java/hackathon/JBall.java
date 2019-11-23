@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
-
+//h
 @SuppressWarnings("serial")
 public class JBall extends JPanel {
 	private int x;
@@ -19,17 +19,16 @@ public class JBall extends JPanel {
 		this.y = y;
 		this.velocityX = velocityX;
 		this.velocityY = velocityY;
-		radius = 20;
+		radius = 80;
 		color = color.RED;
 	}
 	
-	public JBall(int x, int y, int velocityX, int velocityY, int radius, Color color){
+	public JBall(int x, int y, int velocityX, int velocityY, int radius){
 		this.x = x;
 		this.y = y;
 		this.velocityX = velocityX;
 		this.velocityY = velocityY;
 		this.radius = radius;
-		this.color = color;
 	}
 
 	@Override
