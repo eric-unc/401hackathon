@@ -1,10 +1,15 @@
 package src.main.java.hackathon;
 
+import javax.swing.JFrame;
+
 public class Main {
 
 	public static void main(String[] args){
-		// TODO Auto-generated method stub
-
+		var frame = new JFrame();
+		frame.setTitle("Ball Game");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.pack();
+		frame.setVisible(true);
 	}
 
 }
