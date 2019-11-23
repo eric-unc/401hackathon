@@ -2,16 +2,24 @@ package src.main.java.hackathon;
 import java.util.*;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class BallGameWidget extends JPanel {
+public class BallGameWidget extends JPanel implements MouseMotionListener, MouseListener{
 	///
-	JBall[] ballArray = new JBall[2];
 	List<JBall> ballList;
+	JLine line = null;
+	
 	private final int DEFAULT_WIDTH = 800;
 	private final int DEFAULT_HEIGHT = 400;
+	
+	private int arrowInitX = -1;
+	private int arrowInitY = -1;
+	
 	//
 	public BallGameWidget(){
 		super();
@@ -30,6 +38,8 @@ public class BallGameWidget extends JPanel {
 		for (JBall j : ballList) {
 			add(j);
 		}
+		add(line);
+		addMouseMotionListener(this);
 	}
 	
 	@Override
@@ -52,7 +62,56 @@ public class BallGameWidget extends JPanel {
 			if (ball.getY()-ball.getRadius() < 0)
 				ball.setVelocityY(ball.getVelocityY()*-1);
 		}
+		if (line != null)
+			line.paintComponent(this.getGraphics());
 	
+		
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+			line = new JLine(arrowInitX, arrowInitY, e.getX(), e.getY());
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		arrowInitX = e.getX();
+		arrowInitX = e.getY();
+	}
+	
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		//SHOOT BALL HERE
+	}
+	
+	
+	
+	
+	
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 }
